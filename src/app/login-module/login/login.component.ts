@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {LoginService} from '../../login.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../authentication.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,10 @@ import {LoginService} from '../../login.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private loginService: LoginService) {
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -18,11 +23,16 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
+
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
-    this.loginService.loginUser(this.loginForm.value.email , this.loginForm.value.password);
+    this.authenticationService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe(res => {
+      console.log(res);
+      if (res) {
+        this.router.navigate(['/user-profile']);
+      }
+    });
     this.loginForm.reset();
   }
 

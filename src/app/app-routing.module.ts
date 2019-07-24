@@ -4,13 +4,18 @@ import { LoginComponent } from './login-module/login/login.component';
 import { CarouselComponent } from './shared-module/carousel/carousel.component';
 import { TrainingComponent } from './training-module/training/training.component';
 import {SignupComponent} from './login-module/signup/signup.component';
+import {UserProfileComponent} from './login-module/user-profile/user-profile.component';
+import {NotFoundComponent} from './shared-module/not-found/not-found.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'carousel', pathMatch: 'full'},
   {path: 'carousel' , component: CarouselComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'training' , component: TrainingComponent}
+  {path: 'user-profile' , component: UserProfileComponent},
+  {path: 'training' , component: TrainingComponent},
+  {path: '**' , component: NotFoundComponent}
 ];
 
 @NgModule({

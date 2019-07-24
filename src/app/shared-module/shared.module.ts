@@ -7,11 +7,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from './header/header.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    CarouselComponent
+    CarouselComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CarouselComponent } from './carousel/carousel.component';
   ],
   exports: [
     HeaderComponent,
-    CarouselComponent
+    CarouselComponent,
+    NotFoundComponent
   ]
 })
 export class SharedModule { }

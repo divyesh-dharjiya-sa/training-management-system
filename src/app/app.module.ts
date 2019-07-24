@@ -6,9 +6,10 @@ import { TrainingModule } from './training-module/training.module';
 import { SharedModule } from './shared-module/shared.module';
 import { AppComponent } from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import {SignupService} from './signup.service';
-import {LoginService} from './login.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthenticationService} from './authentication.service';
+import {JwtInterceptor} from './helper/jwt.interceptor';
+import {ErrorInterceptor} from './helper/error.interceptor';
 
 
 @NgModule({
@@ -25,8 +26,9 @@ import {LoginService} from './login.service';
     ReactiveFormsModule,
   ],
   providers: [
-    SignupService,
-    LoginService
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
