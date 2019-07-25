@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'carousel' , component: CarouselComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'user-profile' , component: UserProfileComponent , canActivate: [AuthGuard]},
+  {path: 'user-profile' , component: UserProfileComponent,  canActivate: [AuthGuard]},
   {path: 'training' , component: TrainingComponent , canActivate: [AuthGuard]},
   {path: '**' , component: NotFoundComponent}
 ];

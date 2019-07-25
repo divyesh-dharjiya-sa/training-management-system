@@ -16,15 +16,18 @@ export class SignupComponent implements OnInit {
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private userService: UserService) {
+    if (this.authenticationService.loggedIn()) {
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      firstName: new FormControl('', [Validators.required , Validators.minLength(5)]),
+      lastName: new FormControl('', [Validators.required , Validators.minLength(5)]),
+      gender: new FormControl('male', [Validators.required]),
+      email: new FormControl('', [Validators.required , Validators.email]),
+      password: new FormControl('', [Validators.required , Validators.minLength(6)])
     });
   }
 

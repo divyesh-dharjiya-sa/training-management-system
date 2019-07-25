@@ -9,8 +9,7 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthenticationService) {}
   ngOnInit(): void {
   }
-
 }
