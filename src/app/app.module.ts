@@ -6,10 +6,10 @@ import { TrainingModule } from './training-module/training.module';
 import { SharedModule } from './shared-module/shared.module';
 import { AppComponent } from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthenticationService} from './authentication.service';
-import {JwtInterceptor} from './helper/jwt.interceptor';
-import {ErrorInterceptor} from './helper/error.interceptor';
+import {TokenInterceptorService} from './interceptor/token-interceptor.service';
+
 
 
 @NgModule({
@@ -27,8 +27,12 @@ import {ErrorInterceptor} from './helper/error.interceptor';
   ],
   providers: [
     AuthenticationService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    TokenInterceptorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

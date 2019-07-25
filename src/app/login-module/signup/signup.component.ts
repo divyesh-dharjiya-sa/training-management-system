@@ -13,7 +13,6 @@ import {first} from 'rxjs/operators';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
               private userService: UserService) {
@@ -30,15 +29,14 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-
-    this.userService.register(this.signupForm.value)
-      .pipe(first())
+    this.authenticationService.registerUser(this.signupForm)
       .subscribe(
-        data => {
+        res => {
+          localStorage.setItem('token', res.token);
           this.router.navigate(['/login']);
         },
-        error => {
-        });
+        err => console.log(err)
+      );
     this.signupForm.reset();
   }
 

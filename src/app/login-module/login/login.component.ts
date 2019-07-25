@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../authentication.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import {first} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  loginUserData = {};
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
@@ -27,12 +26,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authenticationService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe(res => {
-      console.log(res);
-      if (res) {
-        this.router.navigate(['/user-profile']);
-      }
-    });
+    this.authenticationService.loginUser(this.loginForm.value.email , this.loginForm.value.password)
+      .subscribe(
+        res => {
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/user-profile']);
+        },
+        err => console.log(err)
+      );
     this.loginForm.reset();
   }
 
