@@ -1,0 +1,60 @@
+<div class="container" style="border: 2px solid black; background-color: #d2d4d4">
+  <h1 style="text-align: center;">Create New Training</h1><hr>
+  <div style="width: 850px; padding-left: 300px; padding-bottom: 50px">
+    <form [formGroup]="createTrainingForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type ="name" id="name" class="form-control" formControlName="name">
+        <div *ngIf="createTrainingForm.controls['name'].invalid && (createTrainingForm.controls['name'].dirty || createTrainingForm.controls['name'].touched)" class="text-danger">
+          <div *ngIf="createTrainingForm.controls['name'].errors.required">
+            Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" class="form-control" formControlName="description" rows="4"></textarea>
+        <div *ngIf="createTrainingForm.controls['description'].invalid && (createTrainingForm.controls['description'].dirty || createTrainingForm.controls['description'].touched)" class="text-danger">
+          <div *ngIf="createTrainingForm.controls['description'].errors.required">
+            Description is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startDateTime">Start Date & Time:</label>
+        <input type ="datetime-local" id="startDateTime" class="form-control" formControlName="startDateTime">
+        <div *ngIf="createTrainingForm.controls['startDateTime'].invalid && (createTrainingForm.controls['startDateTime'].dirty || createTrainingForm.controls['startDateTime'].touched)" class="text-danger">
+          <div *ngIf="createTrainingForm.controls['startDateTime'].errors.required">
+            Start Date & Time is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDateTime">End Date & Time:</label>
+        <input type ="datetime-local" id="endDateTime" class="form-control" formControlName="endDateTime">
+        <div *ngIf="createTrainingForm.controls['endDateTime'].invalid && (createTrainingForm.controls['endDateTime'].dirty || createTrainingForm.controls['endDateTime'].touched)" class="text-danger">
+          <div *ngIf="createTrainingForm.controls['endDateTime'].errors.required">
+            End Date & Time is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-btn-wrapper form-group">
+        <label for="upload">Upload Files: </label><br/>
+        <input type="file" id="upload" name="upload" formControlName="upload">
+        <div *ngIf="createTrainingForm.controls['upload'].invalid && (createTrainingForm.controls['upload'].dirty || createTrainingForm.controls['upload'].touched)" class="text-danger">
+          <div *ngIf="createTrainingForm.controls['upload'].errors.required">
+            Upload is required.
+          </div>
+      </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!createTrainingForm.valid">Add Training</button>
+    </form>
+    <button class="btn btn-danger" style="margin-top: 15px" (click)="createTrainingForm.reset()">Cancle</button>
+  </div>
+</div>
