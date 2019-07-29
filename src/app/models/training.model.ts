@@ -3,4 +3,6 @@ export class Training {
   description: string;
   startDateTime: string;
   endDateTime: string;
+  upload ?: string;
+  userId ?: string;
 }

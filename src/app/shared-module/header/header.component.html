@@ -17,7 +17,7 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link my-2 my-sm-0" *ngIf="authService.loggedIn()" routerLink="/login">{{authService.currentUser}}</a>
+          <a class="nav-link my-2 my-sm-0" *ngIf="authService.loggedIn()">Welcome, {{currentUser}}</a>
         </li>
       </ul>
       <ul class="navbar-nav">

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Training} from './training.model';
+import {Training} from '../models/training.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,9 @@ export class TrainingService {
     this.http.post(this.trainingUrl, training).subscribe(res => {
       console.log(res);
     });
+  }
+
+  displayTrainings() {
+    return this.http.get<any>(this.trainingUrl);
   }
 }
