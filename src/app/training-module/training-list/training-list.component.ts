@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TrainingService} from '../training.service';
+import {Training} from '../../models/training.model';
 
 @Component({
   selector: 'app-training-list',
@@ -7,8 +8,8 @@ import {TrainingService} from '../training.service';
   styleUrls: ['./training-list.component.css']
 })
 export class TrainingListComponent implements OnInit {
-  trainings: any;
-  attend = true;
+  trainings: Training[] = [];
+  // attend = true;
   constructor(private trainingService: TrainingService) { }
 
   ngOnInit() {
@@ -19,9 +20,18 @@ export class TrainingListComponent implements OnInit {
      this.trainingService.displayTrainings().subscribe(res => {
        console.log(res);
        this.trainings = res;
+       // tslint:disable-next-line:prefer-for-of
+       for (let i = 0; i < this.trainings.length; i++) {
+         this.trainings[i].attendQuery = true;
+       }
     });
   }
-  attendTraining() {
-    this.attend = !this.attend;
+  attendTraining(training) {
+    training.attendQuery = !training.attendQuery;
+    console.log(training);
+    if (!training.attendQuery) {
+      this.trainingService.createTraining(training.attendQuery);
+    }
+    // this.attend = !this.attend;
   }
 }

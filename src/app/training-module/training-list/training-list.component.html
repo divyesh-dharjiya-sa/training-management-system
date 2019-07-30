@@ -7,7 +7,7 @@
     <h5 class="card-title">Start Time: {{training.startDateTime | date: 'dd/MM/yyyy (hh:mm aa)'}}</h5>
     <h5 class="card-title">End Time: {{training.endDateTime | date:'dd/MM/yyyy (hh:mm aa)'}}</h5>
     <p class="card-text">{{training.description}}</p>
-    <button class="btn btn-primary" [ngClass]="attend ? 'btn-primary' : 'btn-danger'" (click)="attendTraining()">{{attend ? 'Attend' : 'Cancle to Attend'}} Training</button>
+    <button class="btn btn-primary" [ngClass]="training.attendQuery ? 'btn-primary' : 'btn-danger'" (click)="attendTraining(training)">{{training.attendQuery ? 'Attend' : 'Cancel to Attend'}} Training</button>
   </div>
   <div class="card-footer" style="color: green">
     Created By : {{training.userId.firstName}}

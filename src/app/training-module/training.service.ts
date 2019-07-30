@@ -12,6 +12,7 @@ export class TrainingService {
   }
 
   createTraining(training: Training) {
+    console.log(training);
     this.http.post(this.trainingUrl, training).subscribe(res => {
       console.log(res);
     });
