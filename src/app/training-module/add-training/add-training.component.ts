@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TrainingService} from '../training.service';
 
@@ -9,15 +9,18 @@ import {TrainingService} from '../training.service';
 })
 export class AddTrainingComponent implements OnInit {
   createTrainingForm: FormGroup;
-  constructor(private trainingService: TrainingService) { }
+
+  constructor(private trainingService: TrainingService) {
+  }
 
   ngOnInit() {
     this.createTrainingForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      startDateTime: new FormControl('' , Validators.required),
-      endDateTime: new FormControl('' , Validators.required),
-      upload: new FormControl('', Validators.required)
+      startDateTime: new FormControl('', Validators.required),
+      endDateTime: new FormControl('', Validators.required),
+      upload: new FormControl('', Validators.required),
+      attendQuery: new FormControl(true, Validators.required)
     });
   }
 

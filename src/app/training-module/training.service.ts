@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Training} from '../models/training.model';
 
@@ -12,13 +12,21 @@ export class TrainingService {
   }
 
   createTraining(training: Training) {
-    console.log(training);
     this.http.post(this.trainingUrl, training).subscribe(res => {
       console.log(res);
+    });
+  }
+
+  updateTraining(training: any) {
+    this.http.put(this.trainingUrl, training).subscribe(res => {
     });
   }
 
   displayTrainings() {
     return this.http.get<any>(this.trainingUrl);
   }
+
+  // joinTraining(joinTraining: any) {
+  //     return this.http.post<any>(this.trainingJoinUrl , {joinTraining});
+  // }
 }

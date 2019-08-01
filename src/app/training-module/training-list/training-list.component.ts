@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TrainingService} from '../training.service';
 import {Training} from '../../models/training.model';
 
@@ -9,29 +9,27 @@ import {Training} from '../../models/training.model';
 })
 export class TrainingListComponent implements OnInit {
   trainings: Training[] = [];
+
   // attend = true;
-  constructor(private trainingService: TrainingService) { }
+  constructor(private trainingService: TrainingService) {
+  }
 
   ngOnInit() {
     this.getTraining();
   }
 
   getTraining() {
-     this.trainingService.displayTrainings().subscribe(res => {
-       console.log(res);
-       this.trainings = res;
-       // tslint:disable-next-line:prefer-for-of
-       for (let i = 0; i < this.trainings.length; i++) {
-         this.trainings[i].attendQuery = true;
-       }
+    this.trainingService.displayTrainings().subscribe(res => {
+      console.log(res);
+      this.trainings = res;
+      // tslint:disable-next-line:prefer-for-of
     });
   }
-  attendTraining(training) {
+
+  attendTraining(training: Training) {
     training.attendQuery = !training.attendQuery;
     console.log(training);
-    if (!training.attendQuery) {
-      this.trainingService.createTraining(training.attendQuery);
-    }
+    this.trainingService.updateTraining(training);
     // this.attend = !this.attend;
   }
 }

@@ -1,14 +1,16 @@
 <!-- Login & Signup Forms -->
 
 <div class="container" style="border: 2px solid black; background-color: #d2d4d4">
-  <h1 style="text-align: center" style="text-align: center">Signup Form</h1><hr>
+  <h1 style="text-align: center" style="text-align: center">Signup Form</h1>
+  <hr>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"
         style="width: 850px; padding-left: 300px; padding-bottom: 50px" autocomplete="off">
 
     <div class="form-group">
       <label for="firstName">Firstname:</label>
-      <input type ="text" id="firstName" class="form-control" formControlName="firstName">
-      <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)" class="text-danger">
+      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+      <div class="alert alert-danger"
+           *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)">
         <div *ngIf="signupForm.controls['firstName'].errors.required">
           Firstname is required.
         </div>
@@ -21,8 +23,9 @@
 
     <div class="form-group">
       <label for="lastName">Lastname:</label>
-      <input type ="text" id="lastName" class="form-control" formControlName="lastName">
-      <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)" class="text-danger">
+      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+      <div class="alert alert-danger"
+           *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)">
         <div *ngIf="signupForm.controls['lastName'].errors.required">
           LastName is required.
         </div>
@@ -46,8 +49,9 @@
 
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type ="email" id="email" class="form-control" formControlName="email">
-      <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)" class="text-danger">
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <div class="alert alert-danger"
+           *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)">
         <div *ngIf="signupForm.controls['email'].errors.required">
           Email is required.
         </div>
@@ -59,8 +63,9 @@
 
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type ="password" id="password" class="form-control" formControlName="password">
-      <div *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)" class="text-danger">
+      <input type="password" id="password" class="form-control" formControlName="password">
+      <div class="alert alert-danger"
+           *ngIf="signupForm.controls['password'].invalid && (signupForm.controls['password'].dirty || signupForm.controls['password'].touched)">
         <div *ngIf="signupForm.controls['password'].errors.required">
           password is required.
         </div>
@@ -69,7 +74,8 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Register</button> |
+    <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Register</button>
+    |
     <button class="btn btn-primary" type="button" routerLink="/login">Registered user?</button>
   </form>
 </div>

@@ -1,15 +1,17 @@
-
-<div class="card text-center" *ngFor="let training of trainings; let i= index" style="margin-bottom: 25px; border: 2px solid black">
+<div class="card text-center" *ngFor="let training of trainings; let i= index"
+     style="margin-bottom: 25px; border: 2px solid black">
   <div class="card-header">
-    <h3>({{i+1}}) {{training.name}}</h3>
+    <h3>({{i + 1}}) {{training.name}}</h3>
   </div>
   <div class="card-body">
     <h5 class="card-title">Start Time: {{training.startDateTime | date: 'dd/MM/yyyy (hh:mm aa)'}}</h5>
     <h5 class="card-title">End Time: {{training.endDateTime | date:'dd/MM/yyyy (hh:mm aa)'}}</h5>
     <p class="card-text">{{training.description}}</p>
-    <button class="btn btn-primary" [ngClass]="training.attendQuery ? 'btn-primary' : 'btn-danger'" (click)="attendTraining(training)">{{training.attendQuery ? 'Attend' : 'Cancel to Attend'}} Training</button>
+    <button class="btn btn-primary" [ngClass]="training.attendQuery ? 'btn-primary' : 'btn-danger'"
+            (click)="attendTraining(training)">{{training.attendQuery ? 'Attend' : 'Cancle to Attend'}} Training
+    </button>
   </div>
-  <div class="card-footer" style="color: green">
+  <div class="card-footer" style="color: green;">
     Created By : {{training.userId.firstName}}
   </div>
 </div>

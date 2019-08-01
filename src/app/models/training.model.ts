@@ -3,6 +3,7 @@ export class Training {
   description: string;
   startDateTime: string;
   endDateTime: string;
+  attendQuery: boolean;
   upload ?: string;
   userId ?: string;
 }

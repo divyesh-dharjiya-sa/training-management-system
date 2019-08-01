@@ -1,37 +1,41 @@
 <!-- Login & Signup Forms -->
 
 <div class="container" style="border: 2px solid black; background-color: #d2d4d4">
-      <h1 style="text-align: center;">Login Form</h1><hr>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
-            style="width: 850px; padding-left: 300px; padding-bottom: 50px" autocomplete="off">
+  <h1 style="text-align: center;">Login Form</h1>
+  <hr>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+        style="width: 850px; padding-left: 300px; padding-bottom: 50px" autocomplete="off">
 
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type ="email" id="email" class="form-control" formControlName="email">
-          <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" class="text-danger">
-            <div *ngIf="loginForm.controls['email'].errors.required">
-              Email is required.
-            </div>
-            <div *ngIf="loginForm.controls['email'].errors.email">
-              Enter Valid Email.
-            </div>
-          </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+      <div class="alert alert-danger"
+           *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+        <div *ngIf="loginForm.controls['email'].errors.required">
+          Email is required.
         </div>
+        <div *ngIf="loginForm.controls['email'].errors.email">
+          Enter Valid Email.
+        </div>
+      </div>
+    </div>
 
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type ="password" id="password" class="form-control" formControlName="password">
-          <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="text-danger">
-            <div *ngIf="loginForm.controls['password'].errors.required">
-              Password is required.
-            </div>
-            <div *ngIf="loginForm.controls['password'].errors.minlength">
-              Password length minimum 6 Charatcters.
-            </div>
-          </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" class="form-control" formControlName="password">
+      <div class="alert alert-danger"
+           *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+        <div *ngIf="loginForm.controls['password'].errors.required">
+          Password is required.
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button> |
-        <a routerLink="/signup">New User?</a>
-      </form>
+        <div *ngIf="loginForm.controls['password'].errors.minlength">
+          Password length minimum 6 Charatcters.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+    |
+    <a routerLink="/signup">New User?</a>
+  </form>
 
 </div>
