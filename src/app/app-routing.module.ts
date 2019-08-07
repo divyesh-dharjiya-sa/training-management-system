@@ -6,7 +6,6 @@ import {SignupComponent} from './login-module/signup/signup.component';
 import {UserProfileComponent} from './login-module/user-profile/user-profile.component';
 import {NotFoundComponent} from './shared-module/not-found/not-found.component';
 import {AuthGuard} from './auth.guard';
-import {TrainingRoutingModule} from './training-module/training-routing.module';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'carousel', pathMatch: 'full'},

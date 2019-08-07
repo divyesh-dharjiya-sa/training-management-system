@@ -8,7 +8,7 @@ import {Training} from '../../models/training.model';
   styleUrls: ['./training-list.component.css']
 })
 export class TrainingListComponent implements OnInit {
-  trainings: Training[] = [];
+  trainings: any[] = [];
 
   // attend = true;
   constructor(private trainingService: TrainingService) {
