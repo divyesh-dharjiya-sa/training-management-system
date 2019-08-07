@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TrainingService} from '../training.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-training',
@@ -10,7 +11,7 @@ import {TrainingService} from '../training.service';
 export class AddTrainingComponent implements OnInit {
   createTrainingForm: FormGroup;
 
-  constructor(private trainingService: TrainingService) {
+  constructor(private trainingService: TrainingService , private router: Router) {
   }
 
   ngOnInit() {
@@ -27,5 +28,9 @@ export class AddTrainingComponent implements OnInit {
   onSubmit() {
     this.trainingService.createTraining(this.createTrainingForm.value);
     this.createTrainingForm.reset();
+  }
+
+  onCancel() {
+    this.router.navigate(['/training']);
   }
 }

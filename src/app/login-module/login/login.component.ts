@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('token', res.token);
-          localStorage.setItem('currentUser' , res.currentUser)
+          localStorage.setItem('currentUser' , res.currentUser);
           this.router.navigate(['/carousel']);
         },
         err => console.log(err)

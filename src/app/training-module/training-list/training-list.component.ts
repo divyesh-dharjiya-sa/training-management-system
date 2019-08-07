@@ -22,14 +22,14 @@ export class TrainingListComponent implements OnInit {
     this.trainingService.displayTrainings().subscribe(res => {
       console.log(res);
       this.trainings = res;
-      // tslint:disable-next-line:prefer-for-of
     });
   }
 
   attendTraining(training: Training) {
     training.attendQuery = !training.attendQuery;
-    console.log(training);
     this.trainingService.updateTraining(training);
+
+    console.log(training);
     // this.attend = !this.attend;
   }
 }

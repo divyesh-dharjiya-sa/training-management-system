@@ -32,10 +32,11 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authenticationService.registerUser(this.signupForm)
+    this.authenticationService.registerUser(this.signupForm.value)
       .subscribe(
         res => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('currentUser' , res.currentUser);
           this.router.navigate(['/login']);
         },
         err => console.log(err)
