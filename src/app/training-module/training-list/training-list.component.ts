@@ -14,33 +14,31 @@ export class TrainingListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTraining();
-    this.getJoinTraining();
+    this.getJoinTrainingAndUserJoin();
   }
 
-  getTraining() {
+
+  getJoinTrainingAndUserJoin() {
+    this.trainingService.getAllUserJoin().subscribe(
+      res => {
+        this.joinTrainings = res;
+        console.log(this.joinTrainings);
+      });
+
     this.trainingService.displayTrainings().subscribe(res => {
       console.log(res);
       this.trainings = res;
     });
   }
 
-  getJoinTraining() {
-    this.trainingService.getAllUserJoin().subscribe(
-      res => {
-        this.joinTrainings = res;
-        console.log(this.joinTrainings);
-      });
-  }
-
   attendTraining(training: any) {
     training.attendQuery = !training.attendQuery;
     this.trainingService.updateTraining(training);
     // console.log(training);
-    debugger;
     if (!training.attendQuery) {
-      this.trainingService.joinTrainingByUser({trainingId: training._id , userId: localStorage.getItem('userId') , attendQuery: training.attendQuery})
-        .subscribe(res => {
+      this.trainingService.joinTrainingByUser({trainingId: training._id , userId: localStorage
+          .getItem('userId') , attendQuery: training.attendQuery})
+          .subscribe(res => {
           this.joinTrainings = res;
         });
     } else {

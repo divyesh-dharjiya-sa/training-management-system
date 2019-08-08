@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private userService: UserService) {
     if (this.authenticationService.loggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }
   }
 
@@ -35,8 +35,6 @@ export class SignupComponent implements OnInit {
     this.authenticationService.registerUser(this.signupForm.value)
       .subscribe(
         res => {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('currentUser' , res.currentUser);
           this.router.navigate(['/login']);
         },
         err => console.log(err)
